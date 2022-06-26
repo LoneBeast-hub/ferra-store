@@ -13,7 +13,7 @@ export const Image = styled.img`
     display: block;
     margin: auto;
     margin-top: 1%;
-`
+`;
 
 export const DeviceSectionContainer = styled.div`
     display: flex;

@@ -2,13 +2,13 @@ import { createSelector } from "reselect";
 import { convertArrayToMap } from "./directory.utils";
 
 // input selector for directory
-const directoryItems = (state) => {
+const selectDirectory = (state) => {
     return state.directory;
 }
 
 // output selectors
 // select directory data
-export const selectDirectorySections = createSelector([directoryItems], (directory) => {
+export const selectDirectorySections = createSelector([selectDirectory], (directory) => {
     return directory.sections
 })
 
