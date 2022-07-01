@@ -1,6 +1,7 @@
 import { applyMiddleware, createStore } from "redux";
 import logger from "redux-logger";
 import rootReducer from "./root-reduxer";
+import { persistStore } from "redux-persist";
 
 // declare and assign middleware
 const middlewares = [];
@@ -12,3 +13,5 @@ if(process.env.NODE_ENV === 'development') {
 
 // pass our redux object inside the store
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
+
+export const persistor = persistStore(store);

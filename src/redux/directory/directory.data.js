@@ -5,40 +5,41 @@ export const DIRECTORY_DATA = {
             title: 'Phones',
             imgUrl: './images/directory_phone.jpg',
             routeName: 'phones',
-            OperatingSystems: [
+            operatingSystems: [
                 {
                     id: 1,
-                    name: 'Android',
-                    brands: [
-                        {
-                            id: 1,
-                            name: 'Samsung'
-                        },
-                        {
-                            id: 2,
-                            name: 'Redmi'
-                        },
-                        {
-                            id: 3,
-                            name: 'Tecno'
-                        },
-                        {
-                            id: 4,
-                            name: 'Infinix'
-                        }
-                    ]
+                    name: 'Android'
                 },
                 {
                     id: 2,
-                    name: 'IOS',
-                    brands: [
-                        'Apple'
-                    ]
+                    name: 'IOS'
+                }
+            ],
+            brands: [
+                {
+                    id: 1,
+                    name: 'Samsung'
+                },
+                {
+                    id: 2,
+                    name: 'Redmi'
+                },
+                {
+                    id: 3,
+                    name: 'Tecno'
+                },
+                {
+                    id: 4,
+                    name: 'Infinix'
+                },
+                {
+                    id: 5,
+                    name: 'Apple'
                 }
             ],
             items: [
                 {
-                    id: 1,
+                    id: 6,
                     name: 'Samsung Galaxy',
                     OperatingSystem: 'Android',
                     brand: 'Samsung',
@@ -47,7 +48,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 2,
+                    id: 7,
                     name: 'Redmi Note 9',
                     OperatingSystem: 'Android',
                     brand: 'Redmi',
@@ -56,7 +57,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 3,
+                    id: 8,
                     name: 'Tecno P1',
                     OperatingSystem: 'Android',
                     brand: 'Tecno',
@@ -65,7 +66,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 4,
+                    id: 9,
                     name: 'Infinix hot 6',
                     OperatingSystem: 'Android',
                     brand: 'Infinix',
@@ -74,7 +75,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 5,
+                    id: 10,
                     name: 'iPhone 12 pro max',
                     OperatingSystem: 'IOS',
                     brand: 'Apple',
@@ -121,7 +122,7 @@ export const DIRECTORY_DATA = {
             ],
             items: [
                 {
-                    id: 1,
+                    id: 11,
                     name: 'Lenovo ThinkPad',
                     brand: 'Lenovo',
                     imgUrl: './images/laptop_imgs/lenovo.jpeg',
@@ -129,7 +130,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 2,
+                    id: 12,
                     name: 'Hp Elitebook',
                     brand: 'HP',
                     imgUrl: './images/laptop_imgs/hp.jpeg',
@@ -137,7 +138,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 3,
+                    id: 13,
                     name: 'Dell Latitude',
                     brand: 'Dell',
                     imgUrl: './images/laptop_imgs/dell.jpg',
@@ -145,7 +146,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 4,
+                    id: 14,
                     name: 'MacBook 2015',
                     brand: 'Apple',
                     imgUrl: './images/laptop_imgs/apple.jpg',
@@ -153,7 +154,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 5,
+                    id: 15,
                     name: 'Asus Notebook',
                     brand: 'Asus',
                     imgUrl: './images/laptop_imgs/asus.jpeg',
@@ -161,7 +162,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 6,
+                    id: 16,
                     name: 'Acer Notebook',
                     brand: 'Acer',
                     imgUrl: './images/laptop_imgs/acer.jpeg',
@@ -169,7 +170,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 7,
+                    id: 17,
                     name: 'Toshiba Notebook',
                     brand: 'Toshiba',
                     imgUrl: './images/laptop_imgs/toshiba.jpg',
@@ -203,7 +204,7 @@ export const DIRECTORY_DATA = {
             ],
             items: [
                 {
-                    id: 1,
+                    id: 18,
                     name: 'Oraimo 30000mAh',
                     brand: 'Oraimo',
                     imgUrl: './images/power_bank_imgs/oraimo.jpeg',
@@ -211,7 +212,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 2,
+                    id: 19,
                     name: 'New Age 30000mAh',
                     brand: 'New Age',
                     imgUrl: './images/power_bank_imgs/new_age.jpeg',
@@ -219,7 +220,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 3,
+                    id: 20,
                     name: 'Amazon 30000mAh',
                     brand: 'Amazon',
                     imgUrl: './images/power_bank_imgs/amazon.jpeg',
@@ -227,7 +228,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 4,
+                    id: 21,
                     name: 'Samsung 30000mAh',
                     brand: 'Samsung',
                     imgUrl: './images/power_bank_imgs/samsung.jpeg',
@@ -258,7 +259,7 @@ export const DIRECTORY_DATA = {
             ],
             items: [
                 {
-                    id: 1,
+                    id: 22,
                     name: 'Apple 2nd generation',
                     brand: 'Apple',
                     imgUrl: './images/airpod_imgs/apple.jpeg',
@@ -266,7 +267,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 2,
+                    id: 23,
                     name: 'Oraimo 2nd generation',
                     brand: 'Oraimo',
                     imgUrl: './images/airpod_imgs/oraimo.jpeg',
@@ -274,7 +275,7 @@ export const DIRECTORY_DATA = {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 },
                 {
-                    id: 3,
+                    id: 24,
                     name: 'New Age 2nd generation',
                     brand: 'New Age',
                     imgUrl: './images/airpod_imgs/apple.jpeg',
