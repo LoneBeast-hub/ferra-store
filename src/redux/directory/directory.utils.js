@@ -5,3 +5,7 @@ export const convertArrayToMap = (arrayToConvert) => {
     return accumulator;
     }, {})
 }
+
+export const returnSectionItems = ({ sectionsMap, routeName }) => {
+    return sectionsMap[routeName].items
+}

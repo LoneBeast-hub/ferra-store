@@ -5,43 +5,10 @@ export const DIRECTORY_DATA = {
             title: 'Phones',
             imgUrl: './images/directory_phone.jpg',
             routeName: 'phones',
-            operatingSystems: [
-                {
-                    id: 1,
-                    name: 'Android'
-                },
-                {
-                    id: 2,
-                    name: 'IOS'
-                }
-            ],
-            brands: [
-                {
-                    id: 1,
-                    name: 'Samsung'
-                },
-                {
-                    id: 2,
-                    name: 'Redmi'
-                },
-                {
-                    id: 3,
-                    name: 'Tecno'
-                },
-                {
-                    id: 4,
-                    name: 'Infinix'
-                },
-                {
-                    id: 5,
-                    name: 'Apple'
-                }
-            ],
             items: [
                 {
                     id: 6,
                     name: 'Samsung Galaxy',
-                    OperatingSystem: 'Android',
                     brand: 'Samsung',
                     imgUrl: './images/phone_imgs/samsung_galaxy.jpg',
                     price: 190000,
@@ -50,7 +17,6 @@ export const DIRECTORY_DATA = {
                 {
                     id: 7,
                     name: 'Redmi Note 9',
-                    OperatingSystem: 'Android',
                     brand: 'Redmi',
                     imgUrl: './images/phone_imgs/redmi.jpg',
                     price: 170000,
@@ -59,7 +25,6 @@ export const DIRECTORY_DATA = {
                 {
                     id: 8,
                     name: 'Tecno P1',
-                    OperatingSystem: 'Android',
                     brand: 'Tecno',
                     imgUrl: './images/phone_imgs/tecno.jpg',
                     price: 150000,
@@ -68,7 +33,6 @@ export const DIRECTORY_DATA = {
                 {
                     id: 9,
                     name: 'Infinix hot 6',
-                    OperatingSystem: 'Android',
                     brand: 'Infinix',
                     imgUrl: './images/phone_imgs/infinix.jpg',
                     price: 175000,
@@ -77,7 +41,6 @@ export const DIRECTORY_DATA = {
                 {
                     id: 10,
                     name: 'iPhone 12 pro max',
-                    OperatingSystem: 'IOS',
                     brand: 'Apple',
                     imgUrl: './images/phone_imgs/iphone.jpeg',
                     price: 350000,
@@ -90,36 +53,6 @@ export const DIRECTORY_DATA = {
             title: 'Laptops',
             imgUrl: './images/directory_laptop.jpg',
             routeName: 'laptops',
-            brands: [
-                {
-                    id: 1,
-                    name: 'Lenovo'
-                },
-                {
-                    id: 2,
-                    name: 'HP'
-                },
-                {
-                    id: 3,
-                    name: 'Dell'
-                },
-                {
-                    id: 4,
-                    name: 'Apple'
-                },
-                {
-                    id: 5,
-                    name: 'Asus'
-                },
-                {
-                    id: 6,
-                    name: 'Acer'
-                },
-                {
-                    id: 7,
-                    name: 'Toshiba'
-                }
-            ],
             items: [
                 {
                     id: 11,
@@ -184,24 +117,6 @@ export const DIRECTORY_DATA = {
             title: 'Power Banks',
             imgUrl: './images/directory_power_bank.jpg',
             routeName: 'power_banks',
-            brands: [
-                {
-                    id: 1,
-                    name: 'Oraimo'
-                },
-                {
-                    id: 2,
-                    name: 'New Age'
-                },
-                {
-                    id: 3,
-                    name: 'Amazon'
-                },
-                {
-                    id: 4,
-                    name: 'Samsung'
-                }
-            ],
             items: [
                 {
                     id: 18,
@@ -243,20 +158,6 @@ export const DIRECTORY_DATA = {
             imgUrl: './images/directory_airpod.jpg',
             routeName: 'airpods',
             size: 'large',
-            brands: [
-                {
-                    id: 1,
-                    name: 'Apple'
-                },
-                {
-                    id: 2,
-                    name: 'Oraimo'
-                },
-                {
-                    id: 3,
-                    name: 'New Age'
-                }
-            ],
             items: [
                 {
                     id: 22,

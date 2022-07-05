@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectDevice } from '../../redux/directory/directory.selectors';
 import DeviceItem from '../../components/device-item/device-item.component';
+import { fetchSectionItemsStart } from '../../redux/directory/directory.actions';
 // styled components
 import { 
     DevicePageContainer, 
@@ -17,8 +18,6 @@ import {
     ModalPriceContainer,
     ModalNameContainer,
     ModalFooterContainer,
-    FilterIcon,
-    FilterIconContainer,
     Filters,
     EmptyContainer
 } from './device-page.styles';
@@ -26,26 +25,31 @@ import {
 import { Modal } from '../../components/modal/modal.component';
 import { CustomButton } from '../../components/custom-button/custom-button.component';
 import { SearchBox } from '../../components/search-box/search-box.component';
-import { ItemsFilterDropdown } from '../../components/items-filter-dropdown/items-filter-dropdown.component';
 // redux related
 import { toggleItemModal } from '../../redux/item-modal/item-modal.actions';
-import { toggleFilterDropdown } from '../../redux/items-filter/items-filter.actions';
-// react icon
-import { BsFilter } from 'react-icons/bs';
 
 
-const DevicePage = ({ device, modalVisibility, modalData, toggleItemModal, toggleFilterDropdown, showFilterDropdown, filterDropdownData }) => {
+const DevicePage = ({ 
+        device, modalVisibility, 
+        modalData, toggleItemModal, fetchSectionItemsStart
+    }) => {
     const [searchFilterValue, setSearchFilterValue] = useState('');
     const { title, items } = device;
 
+    // useEffect(() => {
+    //     fetchSectionItemsStart()
+    // }, [fetchSectionItemsStart])
+
     // search Filter
     const filteredItems = items.filter((item) => {
-        return item.name.toLowerCase().includes(searchFilterValue.toLowerCase());
+            return item.name.toLowerCase().includes(searchFilterValue.toLowerCase())
+            || item.brand.toLowerCase().includes(searchFilterValue.toLowerCase())
     });
 
     return(
         <DevicePageContainer>
             <TitleContainer> {title} </TitleContainer>
+            {/* Search Box */}
             <Filters>
                 <SearchBox
                  type='search'
@@ -54,54 +58,6 @@ const DevicePage = ({ device, modalVisibility, modalData, toggleItemModal, toggl
                     return setSearchFilterValue(e.target.value)
                  }}
                  />
-                <FilterIconContainer onClick={() => {toggleFilterDropdown(device)}}>
-                    <FilterIcon as={BsFilter} size='1.5rem' />
-                </FilterIconContainer>
-                {
-                    (() => {
-                        if(showFilterDropdown) {
-                            const { brands, operatingSystems } = filterDropdownData;
-                            return(
-                                <ItemsFilterDropdown>
-                                    {operatingSystems? operatingSystems.map((operatingSystem) => {
-                                        return(
-                                            <div key={operatingSystem.id}>
-                                                <input 
-                                                id={operatingSystem.id}
-                                                type='checkbox' 
-                                                name={operatingSystem.name}
-                                                onChange={(e) => {
-                                                    // will continue later
-                                                    // return setFilterValue([...filterValue, e.target.name]);
-                                                }}
-                                                />
-                                                <label id={operatingSystem.id} > {operatingSystem.name} </label>
-                                            </div>
-                                        );
-                                    }) : null}
-                                    {brands.map((brand) => {
-                                        return(
-                                            <div key={brand.id}>
-                                                <input 
-                                                id={brand.id}
-                                                type='checkbox' 
-                                                name={brand.name}
-                                                onChange={(e) => {
-                                                    // will continue later
-                                                    // return setFilterValue([...filterValue, e.target.name]);
-                                                }}
-                                                />
-                                                <label id={brand.id} > {brand.name} </label>
-                                            </div>
-                                        );
-                                    })}
-                                </ItemsFilterDropdown>
-                            );
-                        } else {
-                            return(null);
-                        }
-                    })()
-                }
             </Filters>
             {/* Items */}
             <ItemsContainer>
@@ -151,8 +107,6 @@ const mapStateToProps = (state, ownProps) => {
         device: selectDevice(ownProps.deviceId)(state),
         modalVisibility: state.itemModal.modalVisibility,
         modalData: state.itemModal.modalData,
-        showFilterDropdown: state.itemsFilter.showFilterDropdown,
-        filterDropdownData: state.itemsFilter.filterDropdownData
     });
 }
 
@@ -162,8 +116,8 @@ const mapDispatchToProps = (dispatch) => {
             // toggle item modal and pass in the device item data as 'item'
             return(dispatch(toggleItemModal(item)))
         },
-        toggleFilterDropdown: (data) => {
-            return(dispatch(toggleFilterDropdown(data)))
+        fetchSectionItemsStart: () => {
+            return(dispatch(fetchSectionItemsStart()))
         }
     });
 }

@@ -56,19 +56,6 @@ export const Filters = styled.div`
     }
 `;
 
-export const FilterIconContainer = styled.div`
-    width: 30px;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #808080;
-`;
-
-export const FilterIcon = styled.span`
-    color: #fff;
-`;
-
 export const ItemsContainer = styled.div`
     width: 100%;
     display: grid;

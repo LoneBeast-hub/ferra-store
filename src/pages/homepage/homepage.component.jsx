@@ -1,20 +1,38 @@
-import Directory from '../../components/directory/directory.component';
+import DirectoryContainer from '../../components/directory/directory.container';
 import { HomePageContainer } from './homepage.styles';
 import { Routes, Route } from 'react-router-dom';
-import { DevicePageMod } from '../device-page/device-page.mod.component';
+import DevicePageContainer from '../device-page/device-page.container';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchSectionsStart, fetchSectionItemsStart } from '../../redux/directory/directory.actions';
 
-const HomePage = () => {
+const HomePage = ({ fetchSectionsStart, fetchSectionItemsStart }) => {
+    useEffect(() => {
+        fetchSectionsStart();
+        fetchSectionItemsStart();
+    }, [fetchSectionsStart, fetchSectionItemsStart])
     return(
         // use directory component
         <HomePageContainer>
             <Routes>
                 {/* This naturally shows the directory */}
-                <Route path='' element={<Directory/>} />
+                <Route path='' element={<DirectoryContainer/>} />
                 {/* This shows the device page */}
-                <Route path=':deviceId' element={< DevicePageMod />} />
+                <Route path=':deviceId' element={<DevicePageContainer />} />
             </Routes>
         </HomePageContainer>
     );
 }
 
-export default HomePage
+const mapDispatchToProps = (dispatch) => {
+    return({
+        fetchSectionsStart: () => {
+            return dispatch(fetchSectionsStart())
+        },
+        fetchSectionItemsStart: () => {
+            return dispatch(fetchSectionItemsStart())
+        }
+    })
+}
+
+export default connect(null, mapDispatchToProps)(HomePage)
