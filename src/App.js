@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import Checkout from './pages/checkout/checkout.component';
+import ShopPage from './pages/shop/shop.component';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <Header />
       {/* Routes */}
       <Routes>
-        <Route path='/*' element={<HomePage />} />
-        <Route path='/checkout' element={<Checkout />} />
+        <Route exact path='/' element={<HomePage />} />
+        <Route exact path='/checkout' element={<Checkout />} />
+        <Route exact path='/shop/*' element={<ShopPage />} />
       </Routes>
     </div>
   );

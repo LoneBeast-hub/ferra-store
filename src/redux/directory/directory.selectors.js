@@ -29,6 +29,18 @@ export const selectDirectorySectionsAsArray = createSelector([selectDirectorySec
     }
 })
 
+// select section items as array
+export const selectSectionItemsAsArray = createSelector([selectSectionItems], (sectionItems) => {
+    // change sections data to an array
+    if(sectionItems) {
+        return(Object.keys(sectionItems).map(key => {
+            return(sectionItems[key])
+        }));
+    } else {
+        return([])
+    }
+})
+
 // select device
 export const selectDevice = (deviceUrlParam) => {
     return(

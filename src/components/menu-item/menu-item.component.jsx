@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { MenuItemContainer, BgImageContainer, ContentContainer, TitleContainer, SubtitleContainer } from './menu-item.styles';
 
 // menuItem with destructured props
-export const MenuItem = ({ title, imgUrl, size, routeName }) => {
+export const MenuItem = ({ title, imgUrl, size, routePath }) => {
     let navigate = useNavigate();
     return(
         <MenuItemContainer size={size} onClick={ 
             () => {
-                navigate(routeName);
+                navigate(routePath);
             }
          } >
             <BgImageContainer

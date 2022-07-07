@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 import { selectDevice } from '../../redux/directory/directory.selectors';
 import DeviceItem from '../../components/device-item/device-item.component';
-import { fetchSectionItemsStart } from '../../redux/directory/directory.actions';
 // styled components
 import { 
     DevicePageContainer, 
@@ -31,14 +30,10 @@ import { toggleItemModal } from '../../redux/item-modal/item-modal.actions';
 
 const DevicePage = ({ 
         device, modalVisibility, 
-        modalData, toggleItemModal, fetchSectionItemsStart
+        modalData, toggleItemModal
     }) => {
     const [searchFilterValue, setSearchFilterValue] = useState('');
     const { title, items } = device;
-
-    // useEffect(() => {
-    //     fetchSectionItemsStart()
-    // }, [fetchSectionItemsStart])
 
     // search Filter
     const filteredItems = items.filter((item) => {
@@ -115,9 +110,6 @@ const mapDispatchToProps = (dispatch) => {
         toggleItemModal: (item) => {
             // toggle item modal and pass in the device item data as 'item'
             return(dispatch(toggleItemModal(item)))
-        },
-        fetchSectionItemsStart: () => {
-            return(dispatch(fetchSectionItemsStart()))
         }
     });
 }

@@ -20,30 +20,17 @@ export const db = getFirestore(app);
 // modify the sections snapshot gotten from our firebase collections
 export const convertSectionsSnapshotToMap = (sections) => {
   const transformedSection = sections.docs.map((section) => {
-    const { title, routeName, imgUrl } = section.data();
-    const sectionItems = [];
+    const { title, routeName, imgUrl, routePath } = section.data();
 
-    const sectionItemsColRef = collection(db, `sections/${section.id}/items`);
-    // get the items collection docs
-    getDocs(sectionItemsColRef)
-    .then((snapshot) => {
-      // for each item compare identifier with routeName to return 
-      // needed items
-      snapshot.docs.forEach((sectionItem) => {
-        const { identifier } = sectionItem.data()
-        if(identifier === routeName) {
-          return sectionItems.push({...sectionItem.data(), id: sectionItem.id});
-        }
-      })
-    })
-
-    return({
+    const sections = {
       id: section.id,
       routeName,
+      routePath,
       title,
-      imgUrl,
-      items: sectionItems
-    });
+      imgUrl
+    }
+
+    return(sections);
     })
 
   // reduce the transformedSection array to an object with each 
@@ -57,7 +44,7 @@ export const convertSectionsSnapshotToMap = (sections) => {
 // modify the sections snapshot gotten from our firebase collections
 export const convertSectionsItemsSnapshotToMap = (sections) => {
   const transformedSection = sections.docs.map((section) => {
-    const { routeName } = section.data();
+    const { routeName, routePath, title } = section.data();
     const sectionItems = [];
 
     const sectionItemsColRef = collection(db, `sections/${section.id}/items`);
@@ -66,16 +53,19 @@ export const convertSectionsItemsSnapshotToMap = (sections) => {
     .then((snapshot) => {
       // for each item compare identifier with routeName to return 
       // needed items
-      snapshot.docs.forEach((sectionItem) => {
-        const { identifier } = sectionItem.data()
-        if(identifier === routeName) {
-          return sectionItems.push({...sectionItem.data(), id: sectionItem.id});
-        }
+      snapshot.docs.map((sectionItem) => {
+        sectionItems.push({...sectionItem.data(), id: sectionItem.id});
+        return sectionItems.filter((sectionItem) => {
+          return sectionItem.identifier === routeName
+        })
       })
     })
 
     return({
+      title,
+      id: section.id,
       routeName,
+      routePath,
       items: sectionItems
     });
     })
