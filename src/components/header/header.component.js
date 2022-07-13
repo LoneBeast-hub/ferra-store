@@ -18,8 +18,8 @@ const Header = ({ hideCartDropdown }) => {
                 <Logo className='logo' />
             </LogoContainer>
             <OptionsContainer>
-                <OptionLink to='/contact'>CONTACT</OptionLink>
-                <OptionLink to='/signin'>SIGN IN</OptionLink>
+                {/* <OptionLink to='/contact'>CONTACT</OptionLink>
+                <OptionLink to='/signin'>SIGN IN</OptionLink> */}
                 <OptionLink to='/shop'>SHOP</OptionLink>
                 <CartIcon/>
             </OptionsContainer>

@@ -1,7 +1,7 @@
 import { firebaseKeys } from "./firebase.keys";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from '@firebase/firestore';
-import { collection, getDocs } from '@firebase/firestore';
+// import { collection, getDocs } from '@firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -42,37 +42,38 @@ export const convertSectionsSnapshotToMap = (sections) => {
 }
 
 // modify the sections snapshot gotten from our firebase collections
-export const convertSectionsItemsSnapshotToMap = (sections) => {
-  const transformedSection = sections.docs.map((section) => {
-    const { routeName, routePath, title } = section.data();
-    const sectionItems = [];
+export const convertSectionItemsSnapshotToMap = (sectionItems) => {
+  const transformedSectionItems = sectionItems.docs.map((section) => {
+    const { routeName, title, items } = section.data();
 
-    const sectionItemsColRef = collection(db, `sections/${section.id}/items`);
-    // get the items collection docs
-    getDocs(sectionItemsColRef)
-    .then((snapshot) => {
-      // for each item compare identifier with routeName to return 
-      // needed items
-      snapshot.docs.map((sectionItem) => {
-        sectionItems.push({...sectionItem.data(), id: sectionItem.id});
-        return sectionItems.filter((sectionItem) => {
-          return sectionItem.identifier === routeName
-        })
-      })
-    })
+    // the code commented down below is how I got items from my
+    // firestore subcollection but react doesn't get the data
+    // while the data can be seen in logger/redux state
+
+    // const sectionItems = [];
+
+    // const sectionItemsColRef = collection(db, `sectionItems/${section.id}/items`);
+    // // get the items collection docs
+    // getDocs(sectionItemsColRef)
+    // .then((snapshot) => {
+    //   // needed items
+    //   snapshot.docs.map((sectionItem) => {
+    //     return sectionItems.push({...sectionItem.data(), id: sectionItem.id});
+    //   })
+    // })
 
     return({
       title,
       id: section.id,
       routeName,
-      routePath,
-      items: sectionItems
+      items
     });
     })
 
   // reduce the transformedSection array to an object with each 
   // routeName value as each property value
-  return transformedSection.reduce((accumulator, section) => {
+
+  return transformedSectionItems.reduce((accumulator, section) => {
     accumulator[section.routeName.toLowerCase()] = section;
     return accumulator;
   }, {})

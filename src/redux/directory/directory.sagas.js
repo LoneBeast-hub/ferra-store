@@ -4,7 +4,7 @@ import { collection, getDocs } from '@firebase/firestore';
 import { 
     db, 
     convertSectionsSnapshotToMap,
-    convertSectionsItemsSnapshotToMap
+    convertSectionItemsSnapshotToMap
 } from "../../firebase/firebase.utils";
 import { 
     fetchSectionsSuccess, 
@@ -33,12 +33,12 @@ export function* fetchSectionsAsync() {
 }
 
 export function* fetchSectionItemsAsync() {
-    const sectionsRef = collection(db, 'sections');
+    const sectionItemsRef = collection(db, 'sectionItems');
 
     try {
-        const snapshot = yield getDocs(sectionsRef);
-        const sectionsMap = yield call(convertSectionsItemsSnapshotToMap, snapshot);
-        yield put(fetchSectionItemsSuccess(sectionsMap));
+        const snapshot = yield getDocs(sectionItemsRef);
+        const sectionItemsMap = yield call(convertSectionItemsSnapshotToMap, snapshot);
+        yield put(fetchSectionItemsSuccess(sectionItemsMap));
     } catch(error) {
         yield put(fetchSectionItemsFailure(error.message));
     }

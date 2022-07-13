@@ -2,11 +2,11 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import DevicesOverview from './device-overview.component';
 import { createStructuredSelector } from "reselect";
-import { selectIsSectionFetching } from "../../redux/directory/directory.selectors";
+import { selectIsSectionItemsFetching } from "../../redux/directory/directory.selectors";
 import WithSpinner from "../with-spinner/with-spinner.component";
 
 const mapStateToProps = createStructuredSelector({
-    isLoading: selectIsSectionFetching
+    isLoading: selectIsSectionItemsFetching
 });
 
 const DevicesOverviewContainer = compose(

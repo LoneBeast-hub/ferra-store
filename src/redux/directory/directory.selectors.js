@@ -45,9 +45,6 @@ export const selectSectionItemsAsArray = createSelector([selectSectionItems], (s
 export const selectDevice = (deviceUrlParam) => {
     return(
         createSelector([selectSectionItems], (sectionItems) => {
-            // get new sections as an object
-            // const newSections = convertArrayToMap(sections);
-            
             // return the device matching the url param id
             return(sectionItems? sectionItems[deviceUrlParam] : null);
         })
@@ -57,6 +54,10 @@ export const selectDevice = (deviceUrlParam) => {
 export const selectIsSectionFetching = createSelector([selectDirectory], (directory) => {
     return(directory.isFetching);
 });
+
+export const selectIsSectionItemsFetching = createSelector([selectDirectory], (directory) => {
+    return(directory.isFetching)
+})
 
 export const selectIsSectionItemsLoaded = createSelector([selectDirectory], (directory) => {
     return !!directory.sectionItems

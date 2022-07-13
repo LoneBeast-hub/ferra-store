@@ -9,3 +9,7 @@ const selectItemModal = (state) => {
 export const selectModalVisibility = createSelector([selectItemModal], (itemModal) => {
     return(itemModal.modalVisibility);
 })
+
+export const selectModalData = createSelector([selectItemModal], (itemModal) => {
+    return(itemModal.modalData);
+})

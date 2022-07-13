@@ -4,33 +4,17 @@ import { selectDevice } from '../../redux/directory/directory.selectors';
 import DeviceItem from '../../components/device-item/device-item.component';
 // styled components
 import { 
-    DevicePageContainer, 
-    TitleContainer, 
-    ItemsContainer,
-    ModalImageContainer,
-    ModalImage,
-    ModalWrapper,
-    ModalSectionContainer,
-    ModalCustomButtonContainer,
-    ModalCustomButton,
-    ModalDescriptionContainer,
-    ModalPriceContainer,
-    ModalNameContainer,
-    ModalFooterContainer,
-    Filters,
-    EmptyContainer
+    DevicePageContainer, TitleContainer, ItemsContainer,
+    Filters, EmptyContainer
 } from './device-page.styles';
 // components
 import { Modal } from '../../components/modal/modal.component';
-import { CustomButton } from '../../components/custom-button/custom-button.component';
 import { SearchBox } from '../../components/search-box/search-box.component';
-// redux related
-import { toggleItemModal } from '../../redux/item-modal/item-modal.actions';
-
+import DeviceInfoModal from '../../components/device-info-modal/device-info-modal.component';
 
 const DevicePage = ({ 
         device, modalVisibility, 
-        modalData, toggleItemModal
+        modalData
     }) => {
     const [searchFilterValue, setSearchFilterValue] = useState('');
     const { title, items } = device;
@@ -61,38 +45,9 @@ const DevicePage = ({
                 }) : <EmptyContainer>No items</EmptyContainer>}
             </ItemsContainer>
             {/* device item modal */}
-            {/* using IIFE allows the use of if-else statement in JSX */}
-            {
-                (() => {if(modalVisibility) {
-                    const { description, name, imgUrl, price } = modalData;
-                    return(
-                        <Modal>
-                            <ModalWrapper>
-                                <ModalImageContainer>
-                                    <ModalImage src={imgUrl} />
-                                </ModalImageContainer>
-                                <ModalSectionContainer>
-                                    <ModalNameContainer> {name} </ModalNameContainer>
-                                    <ModalDescriptionContainer> {description} </ModalDescriptionContainer>
-                                    <ModalFooterContainer>
-                                        <ModalPriceContainer> &#8358;{price} </ModalPriceContainer>
-                                        <ModalCustomButtonContainer>
-                                            <ModalCustomButton as={CustomButton}
-                                            bgColor='#f05435'
-                                            border= 'none'
-                                            color='#fff'
-                                            bgColorHover='#d13111'
-                                            onClick={() => {toggleItemModal(null)}}>CLOSE</ModalCustomButton>
-                                        </ModalCustomButtonContainer>
-                                    </ModalFooterContainer>
-                                </ModalSectionContainer>
-                            </ModalWrapper>
-                        </Modal>
-                    )
-                } else {
-                    return null
-                }})()
-            }
+            {modalVisibility? <Modal>
+                <DeviceInfoModal modalData={modalData} />
+            </Modal> : null}
         </DevicePageContainer>
     );
 }
@@ -105,13 +60,4 @@ const mapStateToProps = (state, ownProps) => {
     });
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return({
-        toggleItemModal: (item) => {
-            // toggle item modal and pass in the device item data as 'item'
-            return(dispatch(toggleItemModal(item)))
-        }
-    });
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DevicePage);
+export default connect(mapStateToProps)(DevicePage);
