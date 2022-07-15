@@ -11,7 +11,7 @@ export const ModalScreen = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-    position:fixed;
+    position: fixed;
     background: white;
     width: 80%;
     height: 500px;

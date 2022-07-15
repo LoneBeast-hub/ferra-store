@@ -1,0 +1,4 @@
+export const adminActionTypes = {
+    DEVICE_BAR_TOGGLE: 'DEVICE_BAR_TOGGLE',
+    SHOW_DEVICE_ITEMS_MODAL: 'SHOW_DEVICE_ITEMS_MODAL'
+}

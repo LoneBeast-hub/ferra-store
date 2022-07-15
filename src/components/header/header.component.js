@@ -21,6 +21,7 @@ const Header = ({ hideCartDropdown }) => {
                 {/* <OptionLink to='/contact'>CONTACT</OptionLink>
                 <OptionLink to='/signin'>SIGN IN</OptionLink> */}
                 <OptionLink to='/shop'>SHOP</OptionLink>
+                <OptionLink to='/admin'>ADMIN</OptionLink>
                 <CartIcon/>
             </OptionsContainer>
             {/* toggle cart drop down */}
