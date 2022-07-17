@@ -5,18 +5,19 @@ import {
 } from "./device-items-modal-info.styles";
 import { CustomButton } from "../custom-button/custom-button.component";
 import { connect } from 'react-redux/es/exports';
-import { showDeviceItemsModal } from "../../redux/admin/admin.actions";
+import { showDeviceItemsModal, showAddDeviceItemModal } from "../../redux/admin/admin.actions";
 import { FaPlus } from 'react-icons/fa';
 import { useEffect } from "react";
 import { fetchSectionItemsStart } from "../../redux/directory/directory.actions";
 import { selectDevice } from "../../redux/directory/directory.selectors";
 import { selectIsSectionItemsLoaded } from "../../redux/directory/directory.selectors";
 import { Spinner } from "../spinner/spinner.component";
-import { DeviceModalItem } from "../device-modal-item/device-modal-item.component";
+import DeviceModalItem from "../device-modal-item/device-modal-item.component";
+import { createStructuredSelector } from "reselect";
 
 const DeviceItemsModalInfo = ({ 
     closeDeviceItemsModal, fetchSectionItemsStart, 
-    deviceItems, isLoading
+    deviceItems, isLoading, showAddDeviceItemModal
 }) => {
     useEffect(() => {
         fetchSectionItemsStart()
@@ -32,7 +33,9 @@ const DeviceItemsModalInfo = ({
             </ItemsContainer>
             <ModalCustomButtonContainer>
                 <IconWrap>
-                    <AddIcon as={FaPlus}/>
+                    <AddIcon as={FaPlus} onClick={() => {
+                        showAddDeviceItemModal(deviceItems.id)
+                    }} />
                 </IconWrap>
                 <ModalCustomButton as={CustomButton}
                 bgColor='#f05435'
@@ -46,12 +49,10 @@ const DeviceItemsModalInfo = ({
     )
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return({
-        deviceItems: selectDevice(ownProps.deviceItemsCheck)(state),
-        isLoading: !selectIsSectionItemsLoaded(state)
-    })
-}
+const mapStateToProps = createStructuredSelector({
+    deviceItems: (state, ownProps) => {return selectDevice(ownProps.deviceItemsCheck)(state)},
+    isLoading: (state) => {return !selectIsSectionItemsLoaded(state)}
+})
 
 const mapDispatchToProps = (dispatch) => {
     return({
@@ -60,6 +61,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         fetchSectionItemsStart: () => {
             return(dispatch(fetchSectionItemsStart()))
+        },
+        showAddDeviceItemModal: (deviceId) => {
+            return(dispatch(showAddDeviceItemModal(deviceId)))
         }
     })
 }

@@ -4,8 +4,9 @@ import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux/es/exports";
 import CustomAddButton from "../custom-add-button/custom-add-button.component";
 import { AdminDirectoryMenuContainer } from "./admin-directory.styles";
+import { showAddDeviceModal } from "../../redux/admin/admin.actions";
 
-const AdminDirectory = ({ sections }) => {
+const AdminDirectory = ({ sections, showAddDeviceModal }) => {
     return(
         <AdminDirectoryMenuContainer>
             {
@@ -15,7 +16,7 @@ const AdminDirectory = ({ sections }) => {
                     )
                 })
             }
-            <CustomAddButton />
+            <CustomAddButton handleClick={showAddDeviceModal} />
         </AdminDirectoryMenuContainer>
     )
 }
@@ -24,4 +25,12 @@ const mapStateToProps = createStructuredSelector({
     sections: selectDirectorySectionsAsArray
 })
 
-export default connect(mapStateToProps)(AdminDirectory);
+const mapDispatchToProps = (dispatch) => {
+    return({
+        showAddDeviceModal: () => {
+            return dispatch(showAddDeviceModal())
+        }
+    })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDirectory);

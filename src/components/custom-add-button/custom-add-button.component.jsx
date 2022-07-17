@@ -1,9 +1,9 @@
 import { CustomAddButtonContainer, AddIcon, IconWrap } from "./custom-add-button.styles";
 import { FaPlus } from 'react-icons/fa';
 
-const CustomAddButton = () => {
+const CustomAddButton = ({handleClick}) => {
     return(
-        <CustomAddButtonContainer>
+        <CustomAddButtonContainer onClick={handleClick}>
             <IconWrap>
                 <AddIcon as={FaPlus}/>
             </IconWrap>

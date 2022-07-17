@@ -5,7 +5,14 @@ const INITIAL_STATE = {
     deviceBarToggledId: undefined,
     deviceItems: null,
     showDeviceItemsModal: false,
-    deviceItemsCheck: undefined
+    deviceItemsCheck: undefined,
+    showAddDeviceModal: false,
+    showDeviceEditModal: false,
+    deviceEditData: null,
+    showAddDeviceItemModal: false,
+    deviceIdToAddItem: undefined,
+    showEditDeviceItemModal: false,
+    deviceItemEditData: null
 }
 
 export const adminReducer = (state = INITIAL_STATE, action) => {
@@ -22,6 +29,29 @@ export const adminReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 showDeviceItemsModal: !state.showDeviceItemsModal,
                 deviceItems: action.payload
+            })
+        case adminActionTypes.SHOW_ADD_DEVICE_MODAL:
+            return({
+                ...state,
+                showAddDeviceModal: !state.showAddDeviceModal
+            })
+        case adminActionTypes.SHOW_DEVICE_EDIT_MODAL:
+            return({
+                ...state,
+                showDeviceEditModal: !state.showDeviceEditModal,
+                deviceEditData: action.payload
+            })
+        case adminActionTypes.SHOW_ADD_DEVICE_ITEM_MODAL:
+            return({
+                ...state,
+                showAddDeviceItemModal: !state.showAddDeviceItemModal,
+                deviceIdToAddItem: action.payload
+            })
+        case adminActionTypes.SHOW_EDIT_DEVICE_ITEM_MODAL:
+            return({
+                ...state,
+                showEditDeviceItemModal: !state.showEditDeviceItemModal,
+                deviceItemEditData: action.payload
             })
         default:
             return state;

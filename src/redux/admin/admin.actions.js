@@ -13,3 +13,30 @@ export const showDeviceItemsModal = (items) => {
         payload: items
     })
 }
+
+export const showAddDeviceModal = () => {
+    return({
+        type: adminActionTypes.SHOW_ADD_DEVICE_MODAL
+    })
+}
+
+export const showDeviceEditModal = (deviceData) => {
+    return({
+        type: adminActionTypes.SHOW_DEVICE_EDIT_MODAL,
+        payload: deviceData
+    })
+}
+
+export const showAddDeviceItemModal = (deviceId) => {
+    return({
+        type: adminActionTypes.SHOW_ADD_DEVICE_ITEM_MODAL,
+        payload: deviceId
+    })
+}
+
+export const showEditDeviceItemModal = (deviceItemData) => {
+    return({
+        type: adminActionTypes.SHOW_EDIT_DEVICE_ITEM_MODAL,
+        payload: deviceItemData
+    })
+}

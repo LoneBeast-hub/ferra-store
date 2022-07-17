@@ -25,3 +25,23 @@ export const selectShowDeviceItemsModal = createSelector([selectAdmin], (admin) 
 export const selectDeviceItemsCheck = createSelector([selectAdmin], (admin) => {
     return admin.deviceItemsCheck
 })
+
+export const selectShowAddDeviceModal = createSelector([selectAdmin], (admin) => {
+    return admin.showAddDeviceModal
+})
+
+export const selectShowDeviceEditModal = createSelector([selectAdmin], (admin) => {
+    return admin.showDeviceEditModal
+})
+
+export const selectDeviceEditData = createSelector([selectAdmin], (admin) => {
+    return admin.deviceEditData
+})
+
+export const selectShowAddDeviceItemModal = createSelector([selectAdmin], (admin) => {
+    return admin.showAddDeviceItemModal
+})
+
+export const selectShowEditDeviceItemModal = createSelector([selectAdmin], (admin) => {
+    return admin.showEditDeviceItemModal
+})

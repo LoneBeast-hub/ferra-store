@@ -10,13 +10,17 @@ import { createStructuredSelector } from "reselect";
 import { selectDeviceBarToggle, selectDeviceBarToggledId } from "../../redux/admin/admin.selectors";
 import DeviceBarDropdown from "../device-bar-dropdown/device-bar-dropdown.component";
 
-const AdminMenuItem = ({props: { id, title, imgUrl, routeName }, 
+const AdminMenuItem = ({props: { id, title, imgUrl, routeName, routePath }, 
     toggleDeviceBar, deviceBarToggle, deviceBarToggledId
 }) => {
     return(
         <MenuItemContainer>
             <BgImageContainer imageUrl={imgUrl} />
-            <DotIconWrap onClick={() => {toggleDeviceBar({id: !deviceBarToggle? id : undefined, routeName})}}>
+            <DotIconWrap
+             onClick={() => {
+                toggleDeviceBar({id: !deviceBarToggle? id : undefined, routeName})
+             }}
+            >
                 <DotIcon as={BsThreeDots} />
             </DotIconWrap>
             <ContentContainer>
@@ -25,7 +29,11 @@ const AdminMenuItem = ({props: { id, title, imgUrl, routeName },
             {/* Only show the device dropdown when the device id matches
             with the clicked device bar */}
             {
-                deviceBarToggledId===id? <DeviceBarDropdown /> : null
+                deviceBarToggledId===id? 
+                    <DeviceBarDropdown deviceData={
+                        {id, title, imgUrl, routeName, routePath}
+                    } /> 
+                : null
             }
         </MenuItemContainer>
     )

@@ -5,11 +5,11 @@ import {
 } from "./device-modal-item.styles";
 import { MdEdit } from 'react-icons/md';
 import { MdDelete } from 'react-icons/md';
+import { connect } from 'react-redux/es/exports';
+import { showEditDeviceItemModal } from "../../redux/admin/admin.actions";
 
-export const DeviceModalItem = ({item: {
-    brand, description, id, 
-    imgUrl, name, price
-}}) => {
+const DeviceModalItem = ({ item, showEditDeviceItemModal }) => {
+    const { description, imgUrl, name, price } = item;
     return(
         <DeviceModalItemContainer>
             <ImgContainer src={imgUrl} alt="item" />
@@ -25,9 +25,21 @@ export const DeviceModalItem = ({item: {
                 </PriceContainer>
             </InfoContainer>
             <IconsContainer>
-                <MdEdit />
+                <MdEdit onClick={() => {
+                    showEditDeviceItemModal(item)
+                }} />
                 <MdDelete />
             </IconsContainer>
         </DeviceModalItemContainer>
     )
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return({
+        showEditDeviceItemModal: (deviceItemData) => {
+            return dispatch(showEditDeviceItemModal(deviceItemData))
+        }
+    })
+}
+
+export default connect(null, mapDispatchToProps)(DeviceModalItem);
