@@ -2,6 +2,7 @@ import { firebaseKeys } from "./firebase.keys";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from '@firebase/firestore';
 import { collection, getDocs, query } from '@firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,6 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 // modify the sections snapshot gotten from our firebase collections
 export const convertSectionsSnapshotToMap = (sections) => {

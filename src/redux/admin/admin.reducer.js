@@ -3,16 +3,17 @@ import { adminActionTypes } from "./admin.type";
 const INITIAL_STATE = {
     deviceBarToggle: false,
     deviceBarToggledId: undefined,
-    deviceItems: null,
     showDeviceItemsModal: false,
     deviceItemsCheck: undefined,
     showAddDeviceModal: false,
     showDeviceEditModal: false,
     deviceEditData: null,
     showAddDeviceItemModal: false,
-    deviceIdToAddItem: undefined,
+    deviceIdToCRUDItem: undefined,
+    deviceRouteNameToCRUDItem: undefined,
     showEditDeviceItemModal: false,
-    deviceItemEditData: null
+    deviceItemEditData: null,
+    deviceItemId: undefined
 }
 
 export const adminReducer = (state = INITIAL_STATE, action) => {
@@ -27,8 +28,7 @@ export const adminReducer = (state = INITIAL_STATE, action) => {
         case adminActionTypes.SHOW_DEVICE_ITEMS_MODAL:
             return({
                 ...state,
-                showDeviceItemsModal: !state.showDeviceItemsModal,
-                deviceItems: action.payload
+                showDeviceItemsModal: !state.showDeviceItemsModal
             })
         case adminActionTypes.SHOW_ADD_DEVICE_MODAL:
             return({
@@ -45,13 +45,21 @@ export const adminReducer = (state = INITIAL_STATE, action) => {
             return({
                 ...state,
                 showAddDeviceItemModal: !state.showAddDeviceItemModal,
-                deviceIdToAddItem: action.payload
+                deviceIdToCRUDItem: action.payload.id,
+                deviceRouteNameToCRUDItem: action.payload.routeName
             })
         case adminActionTypes.SHOW_EDIT_DEVICE_ITEM_MODAL:
             return({
                 ...state,
                 showEditDeviceItemModal: !state.showEditDeviceItemModal,
-                deviceItemEditData: action.payload
+                deviceItemEditData: action.payload.item,
+                deviceIdToCRUDItem: action.payload.deviceId,
+                deviceRouteNameToCRUDItem: action.payload.routeName
+            })
+        case adminActionTypes.GET_DEVICE_ITEM_ID:
+            return({
+                ...state,
+                deviceItemId: action.payload
             })
         default:
             return state;

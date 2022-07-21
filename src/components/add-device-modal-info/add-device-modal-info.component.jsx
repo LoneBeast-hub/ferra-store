@@ -26,7 +26,7 @@ const AddDeviceModalInfo = ({closeAddDeviceModal}) => {
                      value="TRACK"
                     />
                 </DeviceForm>
-                <DeviceItemForm formId="addDeviceItem" handleSubmit={(e) => {
+                <DeviceItemForm formId="addDeviceItem" isFirstItem handleSubmit={(e) => {
                     e.preventDefault();
                     console.log('Device Item Tracked!')
                 }}>

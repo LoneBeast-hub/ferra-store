@@ -32,8 +32,8 @@ const DeviceBarDropdown = ({ deviceData, showDeviceItemsModal, showDeviceEditMod
 
 const mapDispatchToProps = (dispatch) => {
     return({
-        showDeviceItemsModal: (items) => {
-            return dispatch(showDeviceItemsModal(items))
+        showDeviceItemsModal: () => {
+            return dispatch(showDeviceItemsModal())
         },
         showDeviceEditModal: (deviceItem) => {
             return dispatch(showDeviceEditModal(deviceItem))

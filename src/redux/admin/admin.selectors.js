@@ -14,10 +14,6 @@ export const selectDeviceBarToggledId = createSelector([selectAdmin], (admin) =>
     return admin.deviceBarToggledId
 })
 
-export const selectDeviceItems = createSelector([selectAdmin], (admin) => {
-    return admin.deviceItems
-})
-
 export const selectShowDeviceItemsModal = createSelector([selectAdmin], (admin) => {
     return admin.showDeviceItemsModal
 })
@@ -44,4 +40,20 @@ export const selectShowAddDeviceItemModal = createSelector([selectAdmin], (admin
 
 export const selectShowEditDeviceItemModal = createSelector([selectAdmin], (admin) => {
     return admin.showEditDeviceItemModal
+})
+
+export const selectDeviceRouteNameToCRUDItem = createSelector([selectAdmin], (admin) => {
+    return admin.deviceRouteNameToCRUDItem
+})
+
+export const selectDeviceIdToCRUDItem = createSelector([selectAdmin], (admin) => {
+    return admin.deviceIdToCRUDItem
+})
+
+export const selectDeviceItemEditData = createSelector([selectAdmin], (admin) => {
+    return admin.deviceItemEditData
+})
+
+export const selectDeviceItemId = createSelector([selectAdmin], (admin) => {
+    return admin.deviceItemId
 })

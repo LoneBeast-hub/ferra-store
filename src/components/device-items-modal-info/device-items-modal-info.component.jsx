@@ -28,13 +28,13 @@ const DeviceItemsModalInfo = ({
             <TitleContainer> {deviceItems.title.toUpperCase()} </TitleContainer>
             <ItemsContainer>
                 {deviceItems.items.map((item) => {
-                    return <DeviceModalItem key={item.id} item={item} />
+                    return <DeviceModalItem key={item.id} item={item} deviceId={deviceItems.id} routeName={deviceItems.routeName} />
                 })}
             </ItemsContainer>
             <ModalCustomButtonContainer>
                 <IconWrap>
                     <AddIcon as={FaPlus} onClick={() => {
-                        showAddDeviceItemModal(deviceItems.id)
+                        showAddDeviceItemModal({id: deviceItems.id, routeName: deviceItems.routeName})
                     }} />
                 </IconWrap>
                 <ModalCustomButton as={CustomButton}
@@ -42,7 +42,7 @@ const DeviceItemsModalInfo = ({
                 border= 'none'
                 color='#fff'
                 bgColorHover='#d13111'
-                onClick={() => {closeDeviceItemsModal(null)}}
+                onClick={closeDeviceItemsModal}
                 >CLOSE</ModalCustomButton>
             </ModalCustomButtonContainer>
         </DeviceItemsModalInfoContainer> : <Spinner />
@@ -56,14 +56,14 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => {
     return({
-        closeDeviceItemsModal: (items) => {
-            return(dispatch(showDeviceItemsModal(items)))
+        closeDeviceItemsModal: () => {
+            return(dispatch(showDeviceItemsModal()))
         },
         fetchSectionItemsStart: () => {
             return(dispatch(fetchSectionItemsStart()))
         },
-        showAddDeviceItemModal: (deviceId) => {
-            return(dispatch(showAddDeviceItemModal(deviceId)))
+        showAddDeviceItemModal: (deviceInfo) => {
+            return(dispatch(showAddDeviceItemModal(deviceInfo)))
         }
     })
 }

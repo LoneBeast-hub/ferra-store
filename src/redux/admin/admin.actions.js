@@ -7,10 +7,9 @@ export const toggleDeviceBar = (data) => {
     })
 }
 
-export const showDeviceItemsModal = (items) => {
+export const showDeviceItemsModal = () => {
     return({
-        type: adminActionTypes.SHOW_DEVICE_ITEMS_MODAL,
-        payload: items
+        type: adminActionTypes.SHOW_DEVICE_ITEMS_MODAL
     })
 }
 
@@ -27,10 +26,10 @@ export const showDeviceEditModal = (deviceData) => {
     })
 }
 
-export const showAddDeviceItemModal = (deviceId) => {
+export const showAddDeviceItemModal = (deviceInfo) => {
     return({
         type: adminActionTypes.SHOW_ADD_DEVICE_ITEM_MODAL,
-        payload: deviceId
+        payload: deviceInfo
     })
 }
 
@@ -38,5 +37,12 @@ export const showEditDeviceItemModal = (deviceItemData) => {
     return({
         type: adminActionTypes.SHOW_EDIT_DEVICE_ITEM_MODAL,
         payload: deviceItemData
+    })
+}
+
+export const getDeviceItemId = (deviceItemId) => {
+    return({
+        type: adminActionTypes.GET_DEVICE_ITEM_ID,
+        payload: deviceItemId
     })
 }
