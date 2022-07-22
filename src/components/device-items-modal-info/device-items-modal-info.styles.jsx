@@ -16,6 +16,24 @@ export const TitleContainer = styled.p`
     text-align: center;
 `;
 
+export const Filter = styled.div`
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-top: -10px;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    padding: 5px 0;
+`;
+
+export const CustomButtonContainer = styled.button`
+    width: 40px;
+    height: unset;
+    font-size: 10px;
+    border-radius: 4px;
+`;
+
 export const ItemsContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -23,6 +41,11 @@ export const ItemsContainer = styled.div`
     height: 370px;
     overflow-y: scroll;
     border: 1px solid #efefef;
+`;
+
+export const EmptyContainer = styled.div`
+    margin-top: 40px;
+    text-align: center;
 `;
 
 export const ModalCustomButtonContainer = styled.div`

@@ -9,15 +9,14 @@ import { useState, useEffect } from 'react';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { storage } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux/es/exports';
-import { selectDeviceRouteNameToCRUDItem } from '../../redux/admin/admin.selectors';
+import { selectDeviceRouteNameToCRUDItem, selectDeviceItemEditData, selectDeviceTitle } from '../../redux/admin/admin.selectors';
 import { createStructuredSelector } from "reselect";
 import { v4 } from 'uuid';
-import { selectDeviceItemEditData } from '../../redux/admin/admin.selectors';
 import { getDeviceItemId } from '../../redux/admin/admin.actions';
 
 const DeviceItemForm = ({ 
     formId, edit, children, handleSubmit, routeName, isFirstItem, 
-    deviceItemEditData, getDeviceItemId
+    deviceItemEditData, getDeviceItemId, deviceTitle
 }) => {
     const [imgUpload, setImgUpload] = useState(null);
     const [imgPath, setImgPath] = useState('');
@@ -54,7 +53,7 @@ const DeviceItemForm = ({
         }
 
         // reference to image path
-        const imgRef = ref(storage, `images/${routeName}/${imgUpload.name + v4()}`);
+        const imgRef = ref(storage, `images/${isFirstItem? deviceTitle.toLowerCase().replaceAll(' ', '_') : routeName}/${imgUpload.name + v4()}`);
         // upload image
         uploadBytes(imgRef, imgUpload)
         .then((response) => {
@@ -96,15 +95,17 @@ const DeviceItemForm = ({
             {isFirstItem? <InputFieldWrapper>
                 <LabelContainer>Title</LabelContainer>
                 <InputContainer
-                    name="deviceItemTitle"
-                    required
+                    name="deviceItemsTitle"
+                    value={deviceTitle}
+                    readOnly
                 />
             </InputFieldWrapper> : null}
             {isFirstItem? <InputFieldWrapper>
                 <LabelContainer>Route name</LabelContainer>
                 <InputContainer
-                    name="deviceItemRouteName"
-                    required
+                    name="deviceItemsRouteName"
+                    value={deviceTitle.toLowerCase().replaceAll(' ', '_')}
+                    readOnly
                 />
             </InputFieldWrapper> : null}
             <InputFieldWrapper>
@@ -205,7 +206,8 @@ const DeviceItemForm = ({
 
 const mapStateToProps = createStructuredSelector({
     routeName: selectDeviceRouteNameToCRUDItem,
-    deviceItemEditData: selectDeviceItemEditData
+    deviceItemEditData: selectDeviceItemEditData,
+    deviceTitle: selectDeviceTitle
 })
 
 const mapDispatchToProps = (dispatch) => {

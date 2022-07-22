@@ -1,24 +1,23 @@
 import { DeviceBarDropdownContainer, CustomButtonContainer } from "./device-bar-dropdown.styles";
 import { CustomButton } from "../custom-button/custom-button.component";
 import { connect } from 'react-redux/es/exports';
-import { showDeviceItemsModal, showDeviceEditModal } from "../../redux/admin/admin.actions";
+import { showDeviceItemsModal, getDeviceData } from "../../redux/admin/admin.actions";
 
-const DeviceBarDropdown = ({ deviceData, showDeviceItemsModal, showDeviceEditModal }) => {
+const DeviceBarDropdown = ({ 
+    deviceData, showDeviceItemsModal, getDeviceData 
+}) => {
     return(
         <DeviceBarDropdownContainer>
             <CustomButtonContainer 
              as={CustomButton}
              border='none'
-             bgColor='#186f9e'
-             color='#fff'
-             onClick={() => {showDeviceEditModal(deviceData)}}
-            >Edit</CustomButtonContainer>
-            <CustomButtonContainer 
-             as={CustomButton}
-             border='none'
              bgColor='#a721cc'
              color='#fff'
-             onClick={showDeviceItemsModal}
+             onClick={() => {
+                showDeviceItemsModal()
+                getDeviceData(deviceData)
+            }
+            }
             >View Items</CustomButtonContainer>
             <CustomButtonContainer 
              as={CustomButton}
@@ -35,8 +34,8 @@ const mapDispatchToProps = (dispatch) => {
         showDeviceItemsModal: () => {
             return dispatch(showDeviceItemsModal())
         },
-        showDeviceEditModal: (deviceItem) => {
-            return dispatch(showDeviceEditModal(deviceItem))
+        getDeviceData: (deviceData) => {
+            return dispatch(getDeviceData(deviceData))
         }
     })
 }

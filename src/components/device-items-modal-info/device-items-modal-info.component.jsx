@@ -1,40 +1,61 @@
 import { 
     DeviceItemsModalInfoContainer, ModalCustomButtonContainer,
     ModalCustomButton, TitleContainer, ItemsContainer,
-    IconWrap, AddIcon
+    IconWrap, AddIcon, Filter, EmptyContainer, CustomButtonContainer
 } from "./device-items-modal-info.styles";
 import { CustomButton } from "../custom-button/custom-button.component";
 import { connect } from 'react-redux/es/exports';
 import { showDeviceItemsModal, showAddDeviceItemModal } from "../../redux/admin/admin.actions";
 import { FaPlus } from 'react-icons/fa';
-import { useEffect } from "react";
-import { fetchSectionItemsStart } from "../../redux/directory/directory.actions";
 import { selectDevice } from "../../redux/directory/directory.selectors";
-import { selectIsSectionItemsLoaded } from "../../redux/directory/directory.selectors";
-import { Spinner } from "../spinner/spinner.component";
 import DeviceModalItem from "../device-modal-item/device-modal-item.component";
 import { createStructuredSelector } from "reselect";
+import { SearchBox } from "../search-box/search-box.component";
+import { useState } from "react";
+import { showDeviceEditModal } from "../../redux/admin/admin.actions";
 
 const DeviceItemsModalInfo = ({ 
-    closeDeviceItemsModal, fetchSectionItemsStart, 
-    deviceItems, isLoading, showAddDeviceItemModal
+    closeDeviceItemsModal, deviceItems, showAddDeviceItemModal,
+    showDeviceEditModal
 }) => {
-    useEffect(() => {
-        fetchSectionItemsStart()
-    }, [fetchSectionItemsStart])
-    console.log(deviceItems)
+    const [searchFilterValue, setSearchFilterValue] = useState('');
+    const { title, items, id, routeName } = deviceItems;
+
+    // search Filter
+    const filteredItems = items.filter((item) => {
+        return item.name.toLowerCase().includes(searchFilterValue.toLowerCase())
+        || item.brand.toLowerCase().includes(searchFilterValue.toLowerCase())
+    });
     return(
-        !isLoading? <DeviceItemsModalInfoContainer>
-            <TitleContainer> {deviceItems.title.toUpperCase()} </TitleContainer>
+        <DeviceItemsModalInfoContainer>
+            <TitleContainer> {title.toUpperCase()} </TitleContainer>
+            <Filter>
+                <SearchBox
+                type='search'
+                placeholder='Search'
+                handleChange={(e) => {
+                    return setSearchFilterValue(e.target.value);
+                }}
+                />
+                <CustomButtonContainer 
+                as={CustomButton}
+                border='none'
+                bgColor='#186f9e'
+                color='#fff'
+                onClick={() => {
+                    showDeviceEditModal({id: id, routeName: routeName})
+                }}
+                >Edit</CustomButtonContainer>
+            </Filter>
             <ItemsContainer>
-                {deviceItems.items.map((item) => {
-                    return <DeviceModalItem key={item.id} item={item} deviceId={deviceItems.id} routeName={deviceItems.routeName} />
-                })}
+                {filteredItems.length? filteredItems.map((item) => {
+                    return <DeviceModalItem key={item.id} item={item} deviceId={id} routeName={routeName} />
+                }) : <EmptyContainer>No items</EmptyContainer>}
             </ItemsContainer>
             <ModalCustomButtonContainer>
                 <IconWrap>
                     <AddIcon as={FaPlus} onClick={() => {
-                        showAddDeviceItemModal({id: deviceItems.id, routeName: deviceItems.routeName})
+                        showAddDeviceItemModal({id: id, routeName: routeName})
                     }} />
                 </IconWrap>
                 <ModalCustomButton as={CustomButton}
@@ -45,13 +66,12 @@ const DeviceItemsModalInfo = ({
                 onClick={closeDeviceItemsModal}
                 >CLOSE</ModalCustomButton>
             </ModalCustomButtonContainer>
-        </DeviceItemsModalInfoContainer> : <Spinner />
+        </DeviceItemsModalInfoContainer>
     )
 }
 
 const mapStateToProps = createStructuredSelector({
-    deviceItems: (state, ownProps) => {return selectDevice(ownProps.deviceItemsCheck)(state)},
-    isLoading: (state) => {return !selectIsSectionItemsLoaded(state)}
+    deviceItems: (state, ownProps) => {return selectDevice(ownProps.deviceItemsCheck)(state)}
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -59,11 +79,11 @@ const mapDispatchToProps = (dispatch) => {
         closeDeviceItemsModal: () => {
             return(dispatch(showDeviceItemsModal()))
         },
-        fetchSectionItemsStart: () => {
-            return(dispatch(fetchSectionItemsStart()))
+        showAddDeviceItemModal: (crudData) => {
+            return(dispatch(showAddDeviceItemModal(crudData)))
         },
-        showAddDeviceItemModal: (deviceInfo) => {
-            return(dispatch(showAddDeviceItemModal(deviceInfo)))
+        showDeviceEditModal: (crudData) => {
+            return dispatch(showDeviceEditModal(crudData))
         }
     })
 }

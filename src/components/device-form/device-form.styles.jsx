@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const FormContainer = styled.form`
     border: 1px solid #efefef;
@@ -31,12 +31,24 @@ export const InputContainer = styled.input`
     border-radius: 5px;
 `;
 
-export const UploadButton = styled.input`
-    display: none;
+const disabledStyles = css`
+    background: #b0b0b1 !important;
 `;
 
-export const UploadImgLabel = styled.label`
+const includeDisabled = ({disabled}) => {
+    if(disabled === false) {
+        return ;
+    }
+    return disabledStyles
+}
+
+export const UploadButton = styled.input`
+    margin-top: 7px;
+`;
+
+export const UploadImgBtn = styled.button`
     padding: 5px;
+    border: none;
     background: #4854d4;
     display: flex;
     font-size: 13px;
@@ -44,6 +56,7 @@ export const UploadImgLabel = styled.label`
     justify-content: center;
     color: #fff;
     border-radius: 7px;
+    ${includeDisabled}
 `;
 
 export const FileInputsWrapper = styled.div`
@@ -56,5 +69,6 @@ export const FileInputsWrapper = styled.div`
 
 export const UndoButton = styled.button`
     border-radius: 10px;
+    ${includeDisabled}
     font-size: 10px;
 `;

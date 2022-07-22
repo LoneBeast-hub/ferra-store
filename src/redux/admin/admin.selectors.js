@@ -57,3 +57,7 @@ export const selectDeviceItemEditData = createSelector([selectAdmin], (admin) =>
 export const selectDeviceItemId = createSelector([selectAdmin], (admin) => {
     return admin.deviceItemId
 })
+
+export const selectDeviceTitle = createSelector([selectAdmin], (admin) => {
+    return admin.deviceTitle
+})

@@ -13,7 +13,8 @@ const INITIAL_STATE = {
     deviceRouteNameToCRUDItem: undefined,
     showEditDeviceItemModal: false,
     deviceItemEditData: null,
-    deviceItemId: undefined
+    deviceItemId: undefined,
+    deviceTitle: ''
 }
 
 export const adminReducer = (state = INITIAL_STATE, action) => {
@@ -39,6 +40,12 @@ export const adminReducer = (state = INITIAL_STATE, action) => {
             return({
                 ...state,
                 showDeviceEditModal: !state.showDeviceEditModal,
+                deviceIdToCRUDItem: action.payload.id,
+                deviceRouteNameToCRUDItem: action.payload.routeName
+            })
+        case adminActionTypes.GET_DEVICE_DATA:
+            return({
+                ...state,
                 deviceEditData: action.payload
             })
         case adminActionTypes.SHOW_ADD_DEVICE_ITEM_MODAL:
@@ -60,6 +67,11 @@ export const adminReducer = (state = INITIAL_STATE, action) => {
             return({
                 ...state,
                 deviceItemId: action.payload
+            })
+        case adminActionTypes.GET_DEVICE_TITLE:
+            return({
+                ...state,
+                deviceTitle: action.payload
             })
         default:
             return state;

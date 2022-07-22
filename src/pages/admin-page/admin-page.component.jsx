@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { AdminPageContainer } from "./admin-page.styles";
 import AdminDirectoryContainer from "../../components/admin-directory/admin-directory.container";
-import { fetchSectionsStart } from "../../redux/directory/directory.actions";
+import { fetchSectionsStart, fetchSectionItemsStart } from "../../redux/directory/directory.actions";
 import { connect } from 'react-redux/es/exports';
 import { Modal } from "../../components/modal/modal.component";
 import { createStructuredSelector } from "reselect";
@@ -20,11 +20,12 @@ const AdminPage = ({
     fetchSectionsStart, showDeviceItemsModal, 
     deviceItemsCheck, showAddDeviceModal,
     showDeviceEditModal, showAddDeviceItemModal,
-    showEditDeviceItemModal
+    showEditDeviceItemModal, fetchSectionItemsStart
 }) => {
     useEffect(() => {
-        fetchSectionsStart()
-    }, [fetchSectionsStart])
+        fetchSectionsStart();
+        fetchSectionItemsStart();
+    }, [fetchSectionsStart, fetchSectionItemsStart])
     return(
         <AdminPageContainer>
             <AdminDirectoryContainer />
@@ -85,6 +86,9 @@ const mapDispatchToProps = (dispatch) => {
     return({
         fetchSectionsStart: () => {
             return dispatch(fetchSectionsStart())
+        },
+        fetchSectionItemsStart: () => {
+            return dispatch(fetchSectionItemsStart())
         }
     })
 }

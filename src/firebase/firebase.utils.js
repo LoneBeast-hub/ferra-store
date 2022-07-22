@@ -22,14 +22,15 @@ export const storage = getStorage(app);
 // modify the sections snapshot gotten from our firebase collections
 export const convertSectionsSnapshotToMap = (sections) => {
   const transformedSection = sections.docs.map((section) => {
-    const { title, routeName, imgUrl, routePath } = section.data();
+    const { title, routeName, imgUrl, routePath, imgPath } = section.data();
 
     const sections = {
       id: section.id,
       routeName,
       routePath,
       title,
-      imgUrl
+      imgUrl,
+      imgPath
     }
 
     return(sections);

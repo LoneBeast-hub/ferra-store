@@ -34,7 +34,7 @@ const EditDeviceItemModalInfo = ({ closeEditDeviceItemModal, deviceItemId, devic
                             price: e.target.deviceItemPrice.value
                         }
 
-                        // deviceItem collection reference
+                        // deviceItem document reference
                         const deviceItemDocRef = doc(db, `sectionItems/${deviceIdToEditItem}/items/${deviceItemId}`);
                         // update document in db
                         updateDoc(deviceItemDocRef, deviceItemObj)

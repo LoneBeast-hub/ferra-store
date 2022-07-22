@@ -19,17 +19,17 @@ export const showAddDeviceModal = () => {
     })
 }
 
-export const showDeviceEditModal = (deviceData) => {
+export const showDeviceEditModal = (crudData) => {
     return({
         type: adminActionTypes.SHOW_DEVICE_EDIT_MODAL,
-        payload: deviceData
+        payload: crudData
     })
 }
 
-export const showAddDeviceItemModal = (deviceInfo) => {
+export const showAddDeviceItemModal = (crudData) => {
     return({
         type: adminActionTypes.SHOW_ADD_DEVICE_ITEM_MODAL,
-        payload: deviceInfo
+        payload: crudData
     })
 }
 
@@ -44,5 +44,19 @@ export const getDeviceItemId = (deviceItemId) => {
     return({
         type: adminActionTypes.GET_DEVICE_ITEM_ID,
         payload: deviceItemId
+    })
+}
+
+export const getDeviceTitle = (deviceTitle) => {
+    return({
+        type: adminActionTypes.GET_DEVICE_TITLE,
+        payload: deviceTitle
+    })
+}
+
+export const getDeviceData = (deviceData) => {
+    return({
+        type: adminActionTypes.GET_DEVICE_DATA,
+        payload: deviceData
     })
 }

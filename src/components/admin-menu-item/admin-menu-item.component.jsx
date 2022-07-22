@@ -10,7 +10,7 @@ import { createStructuredSelector } from "reselect";
 import { selectDeviceBarToggle, selectDeviceBarToggledId } from "../../redux/admin/admin.selectors";
 import DeviceBarDropdown from "../device-bar-dropdown/device-bar-dropdown.component";
 
-const AdminMenuItem = ({props: { id, title, imgUrl, routeName, routePath }, 
+const AdminMenuItem = ({props: { id, title, imgUrl, routeName, routePath, imgPath }, 
     toggleDeviceBar, deviceBarToggle, deviceBarToggledId
 }) => {
     return(
@@ -31,7 +31,7 @@ const AdminMenuItem = ({props: { id, title, imgUrl, routeName, routePath },
             {
                 deviceBarToggledId===id? 
                     <DeviceBarDropdown deviceData={
-                        {id, title, imgUrl, routeName, routePath}
+                        {id, title, imgUrl, routeName, routePath, imgPath }
                     } /> 
                 : null
             }
