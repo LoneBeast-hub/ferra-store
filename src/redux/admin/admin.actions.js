@@ -60,3 +60,10 @@ export const getDeviceData = (deviceData) => {
         payload: deviceData
     })
 }
+
+export const getCrudData = (crudData) => {
+    return({
+        type: adminActionTypes.GET_CRUD_DATA,
+        payload: crudData
+    })
+}

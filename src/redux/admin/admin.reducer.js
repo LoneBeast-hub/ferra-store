@@ -48,6 +48,12 @@ export const adminReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 deviceEditData: action.payload
             })
+        case adminActionTypes.GET_CRUD_DATA:
+            return({
+                ...state,
+                deviceIdToCRUDItem: action.payload.id,
+                deviceRouteNameToCRUDItem: action.payload.routeName
+            })
         case adminActionTypes.SHOW_ADD_DEVICE_ITEM_MODAL:
             return({
                 ...state,

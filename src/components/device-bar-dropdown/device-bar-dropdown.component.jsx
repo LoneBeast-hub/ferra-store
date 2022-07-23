@@ -19,12 +19,6 @@ const DeviceBarDropdown = ({
             }
             }
             >View Items</CustomButtonContainer>
-            <CustomButtonContainer 
-             as={CustomButton}
-             border='none'
-             bgColor='#cc6447'
-             color='#fff'
-            >Delete</CustomButtonContainer>
         </DeviceBarDropdownContainer>
     )
 }

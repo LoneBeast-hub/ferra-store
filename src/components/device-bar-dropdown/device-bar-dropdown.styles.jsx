@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const DeviceBarDropdownContainer = styled.div`
     position: absolute;
     width: 100px;
-    height: 110px;
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
     padding: 20px;

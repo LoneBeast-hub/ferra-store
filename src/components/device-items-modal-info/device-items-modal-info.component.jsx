@@ -11,15 +11,23 @@ import { selectDevice } from "../../redux/directory/directory.selectors";
 import DeviceModalItem from "../device-modal-item/device-modal-item.component";
 import { createStructuredSelector } from "reselect";
 import { SearchBox } from "../search-box/search-box.component";
-import { useState } from "react";
-import { showDeviceEditModal } from "../../redux/admin/admin.actions";
+import { useState, useEffect } from "react";
+import { showDeviceEditModal, getCrudData } from "../../redux/admin/admin.actions";
+import { selectDeviceIdToCRUDItem, selectDeviceEditData } from "../../redux/admin/admin.selectors";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase/firebase.utils";
 
 const DeviceItemsModalInfo = ({ 
     closeDeviceItemsModal, deviceItems, showAddDeviceItemModal,
-    showDeviceEditModal
+    showDeviceEditModal, getCrudData, deviceIdToDeleteItems,
+    deviceEditData
 }) => {
     const [searchFilterValue, setSearchFilterValue] = useState('');
     const { title, items, id, routeName } = deviceItems;
+
+    useEffect(() => {
+        getCrudData({id: id, routeName: routeName})
+    }, [id, routeName, getCrudData])
 
     // search Filter
     const filteredItems = items.filter((item) => {
@@ -46,6 +54,35 @@ const DeviceItemsModalInfo = ({
                     showDeviceEditModal({id: id, routeName: routeName})
                 }}
                 >Edit</CustomButtonContainer>
+                {/* I stopped here, what I thought to delete the section
+                is with the section doc Id and section items doc Id to 
+                delete both the holders and for that, I'll need to code the
+                getCrudData again to get both ID's*/}
+                {!items.length? 
+                    <CustomButtonContainer 
+                    as={CustomButton}
+                    border='none'
+                    bgColor='#cc6447'
+                    color='#fff'
+                    onClick={() => {
+                        // device doc reference
+                        const deviceDocRef = doc(db, `sections/${deviceEditData.id}`);
+                        // delete device
+                        deleteDoc(deviceDocRef)
+                        .then(() => {
+                            // device items doc reference
+                            const deviceItemsDocRef = doc(db, `sectionItems/${deviceIdToDeleteItems}`);
+                            deleteDoc(deviceItemsDocRef);
+                            alert('Device Deleted!');
+                            closeDeviceItemsModal();
+                        })
+                        .catch((error) => {
+                            alert(`Error! Device Deletion Failed: ${error}`)
+                        })
+                    }}
+                    >Delete</CustomButtonContainer>
+                : null
+                }
             </Filter>
             <ItemsContainer>
                 {filteredItems.length? filteredItems.map((item) => {
@@ -71,7 +108,9 @@ const DeviceItemsModalInfo = ({
 }
 
 const mapStateToProps = createStructuredSelector({
-    deviceItems: (state, ownProps) => {return selectDevice(ownProps.deviceItemsCheck)(state)}
+    deviceItems: (state, ownProps) => {return selectDevice(ownProps.deviceItemsCheck)(state)},
+    deviceEditData: selectDeviceEditData,
+    deviceIdToDeleteItems: selectDeviceIdToCRUDItem
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -84,6 +123,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         showDeviceEditModal: (crudData) => {
             return dispatch(showDeviceEditModal(crudData))
+        },
+        getCrudData: (crudData) => {
+            return(dispatch(getCrudData(crudData)))
         }
     })
 }
