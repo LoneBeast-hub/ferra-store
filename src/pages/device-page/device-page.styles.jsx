@@ -67,22 +67,10 @@ export const ItemsContainer = styled.div`
     }
 
     @media screen and (max-width: 800px) {
-        width: 75%;
+        width: 100%;
         margin: auto;
         display: grid;
         grid-gap: 15px;
-    }
-
-    @media screen and (max-width: 600px) {
-        width: 85%;
-    }
-
-    @media screen and (max-width: 500px) {
-        width: 100%;
-    }
-
-    @media screen and (max-width: 400px) {
-        width: 80%;
     }
 `;
 

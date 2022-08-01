@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { selectCurrentUser, selectCurrentUserId, selectAdminId } from './redux/user/user.selectors';
 import { createStructuredSelector } from 'reselect';
+import Footer from './components/footer/footer.component';
 
 function App({ 
   checkUserSession, currentUser, adminId, currentUserId 
@@ -36,6 +37,7 @@ function App({
           : <Navigate to='/' />
         } />
       </Routes>
+      <Footer />
     </div>
   );
 }

@@ -13,7 +13,7 @@ export const ShopPageContainer = styled.div`
     }
 
     @media screen and (max-width: 500px) {
-        width: 100%;
+        width: 90%;
     }
 
     @media screen and (max-width: 400px) {
