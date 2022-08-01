@@ -54,10 +54,6 @@ const DeviceItemsModalInfo = ({
                     showDeviceEditModal({id: id, routeName: routeName})
                 }}
                 >Edit</CustomButtonContainer>
-                {/* I stopped here, what I thought to delete the section
-                is with the section doc Id and section items doc Id to 
-                delete both the holders and for that, I'll need to code the
-                getCrudData again to get both ID's*/}
                 {!items.length? 
                     <CustomButtonContainer 
                     as={CustomButton}

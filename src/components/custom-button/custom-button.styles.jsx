@@ -41,6 +41,7 @@ const googleSignInStyles = css`
     background-color: #4285f4;
     color: white;
     border: none;
+    padding: 7px;
 
     &:hover {
         background-color: #357ae8;
